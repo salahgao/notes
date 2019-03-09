@@ -1,1 +1,1 @@
-# technote
+# notes
