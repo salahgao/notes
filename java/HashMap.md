@@ -2,6 +2,8 @@
 
 ## 简单总结
 
+底层是由数组+链表+红黑树来实现的。
+
 1. 基于哈希表的Map接口实现。允许null values 和 the null key。
 2. 迭代集合视图所需要的时间与HashMap实例的容量（"capacity" ，桶的数量）加上其大小（size，映射键值对的数量）成比例关系。因此，若迭代性能很重要，则不要将初始容量（initial capacity）设置过高（或者负载因子[load factor]设置过低）是非常重要的。
 3. 一个HashMap的实例有两个影响其性能的参数：初始容量（initial capacity） 和负载因子（load factor）。
