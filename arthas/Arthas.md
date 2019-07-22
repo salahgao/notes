@@ -11,11 +11,15 @@ Arthas 是Alibaba开源的Java诊断工具，深受开发者喜爱。
 5. 是否有一个全局视角来查看系统的运行状况？
 6. 有什么办法可以监控到JVM的实时运行状态？
 
+Arthas支持JDK 6+，支持Linux/Mac/Winodws，采用命令行交互模式，同时提供丰富的 Tab 自动补全功能，进一步方便进行问题的定位和诊断。
+
 ## Demo源码
 
 [Demo源码](https://github.com/alibaba/arthas/blob/master/demo/src/main/java/demo/MathGame.java)
 
 ## 常用命令
+
+1. 可以结合monitor与trace定位应用性能问题
 
 ### thread——查看当前 JVM 的线程堆栈信息
 
@@ -163,5 +167,5 @@ ts=2018-12-04 01:35:58;thread_name=main;id=1;is_daemon=false;priority=5;TCCL=sun
 https://alibaba.github.io/arthas/
 
 
-## References
+## GitHub
 https://github.com/alibaba/arthas
