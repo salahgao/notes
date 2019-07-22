@@ -34,14 +34,16 @@ JVM-SANDBOX属于基于Instrumentation的动态编织类的AOP框架，**通过�
 1. 下载
 2. 解压
 3. 运行 ./install-local.sh -p /root
+
 ```
    VERSION=1.2.1
    PATH=/root/sandbox
    install sandbox successful.
 ```
+
 ## 模块编写
 [修复一个损坏的“钟”](https://github.com/alibaba/jvm-sandbox/wiki/FIRST-MODULE)
 
 
-## References
+## GitHub
 https://github.com/alibaba/jvm-sandbox
