@@ -92,6 +92,95 @@ PKCS#7 是签名或加密数据的格式标准，官方称之为容器。由于�
 
 PKCS#12 由PFX进化而来的用于交换公共的和私有的对象的标准格式。
 
+### PEMWriter
+```
+@Test
+public void test() throws Exception {
+    KeyPair keyPair = KeyUtil.getRSAKeyPair();
+    PrivateKey privateKey = keyPair.getPrivate();
+    System.out.println(privateKey.getFormat());
+    System.out.println(privateKey.getAlgorithm());
+
+    StringWriter stringWriter = new StringWriter();
+    JcaPEMWriter jcaPEMWriter = new JcaPEMWriter(stringWriter);
+    jcaPEMWriter.writeObject(privateKey);
+    jcaPEMWriter.close();
+    String key1 = stringWriter.toString();
+    System.out.println("key1：\n" + key1);
+
+    JcaPKCS8Generator jcaPKCS8Generator = new JcaPKCS8Generator(privateKey, null);
+
+    stringWriter = new StringWriter();
+    jcaPEMWriter = new JcaPEMWriter(stringWriter);
+    jcaPEMWriter.writeObject(jcaPKCS8Generator);
+    jcaPEMWriter.close();
+    String key2 = stringWriter.toString();
+    System.out.println("key2：\n" + key2);
+
+}
+ 
+// 输出为
+PKCS#8
+RSA
+key1：
+-----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEAxWEynnIUmJ6fm1kft01+oj5Spq3D6pVSSnJKaciuWqUkKXYJ
+7l7UPNmalIpEpMqXoYDBgrTcM2/XaFZzJZiNFl+Fz3EaSpl6X0T/9pBaIdBrFO14
+ot7U4V3kIrQCoxttf/aWgsk1MiQlXnc2g2g0M3DM58BWENPxpt/kXCywmnsCbsio
+0HDddGn2NC+rBzsDiA4OpP/B/y4yeI8I1FTwxNZqQ+DSSjMGj8V6GeL67/fGQalW
+7of9WoYtuRmD6E07qq39FLbzbvSCqBNyE0Q/TfIXhtczDAoYZMNhTwHewbfohv1t
+GTf5A7y0C+LWSBAYxtDS9hsWotffcaX74t05mQIDAQABAoIBAB6uyCNk2QpLmESa
+M2m3iIC4nvkNqJfCHB96ClLM8Tuikc9HK+6L+8K00giWwOp8GtuujAZhTpzJXUs5
+Kx+0SfRpJ4AylRN1LdZ6/65IzNYWU9sWOktZR+77vT/ey00nMZuzjbypghU4FL4N
+WqJNU9YOSjAZkFd/1wAprFJe2Ro+UDCr//P1z4b3M8CJlxjFtMYH8kixqJ05fucR
+JkoDnKFz06uzO+DyD+460GDQHBHxemG5UphcFe8K9cKHE3uQyDFO7YOcaE/IKEWJ
+o+ck1ujVUKbnjy+DLjgHpfo+oRIYxpRAFgd19eJWF17Ij4GGzd5lnbeWhcmPJCDU
+BFkT6g0CgYEA+944Xcg0QeCktX0U1S2Tu3ySK3fBXL5BBPqCgkSYsWh20yf57Nqt
+vA+5xrq2VL6HhEdu+xPs3sYTeIceEuZr7fYbyCsneUrft+aZSL+zLg0omYnWEK2H
+tb0X8CKyKlNB/VIVTucR/2bJkoQY97b4XuKAcGG25ONBlfx46cpNWW0CgYEAyJ4k
+AzENCLb2jh98MPZZOcqMDkfZhE8KHBIXK8m3BGbyeWNOYOenZKOFRkl4YEKMs3OP
+iq6bsKWgOeqg4qcFugfkrPlXy4BYtlWNwBhKFcpon4w8eoLJBw0QvXI6WbgfHxog
+4cFMOvoIE5GNd2nKZyiObHzT4TxLPjuCagxxkV0CgYBctkQRYWy7AzIeDFjqz8gd
+r5EupvpqZS4R4xS/VvjN9SIoQALjiOuC2lcMLBaJw0inDJRxn7gFmOv55eLQGjmI
+cptvZ1M0drc7PosWGFqgjP9w5SgDI51c7KovHtZudg9IbDqjvLMHTJLOeAmoxZVP
+eBjHRXDJeE3gI/tuM6WdUQKBgQCYriowN6N4z25Dadjllob/gZQnxizYEiNai7YQ
+wDrGYecF1Tswav0tjXl/raiscdmNNVS4Mf0RamvPyC5bcMvd8eXqcvWLTgm18tSn
+rpSrktkfG+ZnQqPl9t6Xn5ii8YrV69e8mJUAiYueAPdOOzgsXGRQUowabf3Bxh6R
+wRipjQKBgDWsF0egI3V6hO/L8yRS9aJIgyjPyrnu+/hwhzq/CrdY2h4G+cd6kXzT
+fWgvHgUGCAVFebCjcbgKFTuoovOFP/5T2c8FzDqs47lCP4ZHq03naULBfTAAAb0c
+AwTaJMZR5wWdZHx6QnLHAHsACDL7GF9wsjumpk74IuD1pWLrLwXM
+-----END RSA PRIVATE KEY-----
+
+key2：
+-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDFYTKechSYnp+b
+WR+3TX6iPlKmrcPqlVJKckppyK5apSQpdgnuXtQ82ZqUikSkypehgMGCtNwzb9do
+VnMlmI0WX4XPcRpKmXpfRP/2kFoh0GsU7Xii3tThXeQitAKjG21/9paCyTUyJCVe
+dzaDaDQzcMznwFYQ0/Gm3+RcLLCaewJuyKjQcN10afY0L6sHOwOIDg6k/8H/LjJ4
+jwjUVPDE1mpD4NJKMwaPxXoZ4vrv98ZBqVbuh/1ahi25GYPoTTuqrf0UtvNu9IKo
+E3ITRD9N8heG1zMMChhkw2FPAd7Bt+iG/W0ZN/kDvLQL4tZIEBjG0NL2Gxai199x
+pfvi3TmZAgMBAAECggEAHq7II2TZCkuYRJozabeIgLie+Q2ol8IcH3oKUszxO6KR
+z0cr7ov7wrTSCJbA6nwa266MBmFOnMldSzkrH7RJ9GkngDKVE3Ut1nr/rkjM1hZT
+2xY6S1lH7vu9P97LTScxm7ONvKmCFTgUvg1aok1T1g5KMBmQV3/XACmsUl7ZGj5Q
+MKv/8/XPhvczwImXGMW0xgfySLGonTl+5xEmSgOcoXPTq7M74PIP7jrQYNAcEfF6
+YblSmFwV7wr1wocTe5DIMU7tg5xoT8goRYmj5yTW6NVQpuePL4MuOAel+j6hEhjG
+lEAWB3X14lYXXsiPgYbN3mWdt5aFyY8kINQEWRPqDQKBgQD73jhdyDRB4KS1fRTV
+LZO7fJIrd8FcvkEE+oKCRJixaHbTJ/ns2q28D7nGurZUvoeER277E+zexhN4hx4S
+5mvt9hvIKyd5St+35plIv7MuDSiZidYQrYe1vRfwIrIqU0H9UhVO5xH/ZsmShBj3
+tvhe4oBwYbbk40GV/Hjpyk1ZbQKBgQDIniQDMQ0ItvaOH3ww9lk5yowOR9mETwoc
+EhcrybcEZvJ5Y05g56dko4VGSXhgQoyzc4+KrpuwpaA56qDipwW6B+Ss+VfLgFi2
+VY3AGEoVymifjDx6gskHDRC9cjpZuB8fGiDhwUw6+ggTkY13acpnKI5sfNPhPEs+
+O4JqDHGRXQKBgFy2RBFhbLsDMh4MWOrPyB2vkS6m+mplLhHjFL9W+M31IihAAuOI
+64LaVwwsFonDSKcMlHGfuAWY6/nl4tAaOYhym29nUzR2tzs+ixYYWqCM/3DlKAMj
+nVzsqi8e1m52D0hsOqO8swdMks54CajFlU94GMdFcMl4TeAj+24zpZ1RAoGBAJiu
+KjA3o3jPbkNp2OWWhv+BlCfGLNgSI1qLthDAOsZh5wXVOzBq/S2NeX+tqKxx2Y01
+VLgx/RFqa8/ILltwy93x5epy9YtOCbXy1KeulKuS2R8b5mdCo+X23pefmKLxitXr
+17yYlQCJi54A9047OCxcZFBSjBpt/cHGHpHBGKmNAoGANawXR6AjdXqE78vzJFL1
+okiDKM/Kue77+HCHOr8Kt1jaHgb5x3qRfNN9aC8eBQYIBUV5sKNxuAoVO6ii84U/
+/lPZzwXMOqzjuUI/hkerTedpQsF9MAABvRwDBNokxlHnBZ1kfHpCcscAewAIMvsY
+X3CyO6amTvgi4PWlYusvBcw=
+-----END PRIVATE KEY-----
+```
 
 ## 小结
 
