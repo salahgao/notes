@@ -11,13 +11,13 @@
 
 ### JUnit4 中的 before beforeClass after afterClass
 
-- 一个JUnit4 的单元测试用例执行顺序为:
+一个JUnit4 的单元测试用例执行顺序为:
 
-    - @BeforeClass -> @Before -> @Test -> @After -> @AfterClass;
+- @BeforeClass -> @Before -> @Test -> @After -> @AfterClass;
 
-- 每一个测试方法的调用顺序为:
+每一个测试方法的调用顺序为:
 
-    - @Before -> @Test -> @After;
+- @Before -> @Test -> @After;
 
 **BeforeClass** 在所有测试之前只执行一次，且必须为 public static void no-arg method
 
@@ -37,5 +37,6 @@
 
 **参考**
 
-> https://blog.csdn.net/lyalei/article/details/79133710
-> https://junit.org/junit4/javadoc/latest/index.html
+- https://blog.csdn.net/lyalei/article/details/79133710
+
+- https://junit.org/junit4/javadoc/latest/index.html
