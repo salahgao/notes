@@ -1,16 +1,20 @@
 # 问答
 
 ## TODO
-- ThreadPoolExecutor
+- 操作系统 用户态 内核态
+- 多态
 - 设计模式
 - AOP 实现 静态植入 静态代理 动态代理 AspectJ CGLIB
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [Java有哪些锁？乐观锁 悲观锁 synchronized 可重入锁 读写锁,用过reentrantlock吗？reentrantlock与synmchronized的区别](#java有哪些锁？乐观锁-悲观锁-synchronized-可重入锁-读写锁用过reentrantlock吗？reentrantlock与synmchronized的区别)
+- [线程如何退出结束](#线程如何退出结束)
+- [定时器用什么做的](#定时器用什么做的)
+- [时间的格式化方法](#时间的格式化方法)
 - [字符串的格式化方法](#字符串的格式化方法)
 - [用过spring的线程池还是java的线程池？](#用过spring的线程池还是java的线程池？)
 - [IO会阻塞吗？readLine是不是阻塞的](#io会阻塞吗？readline是不是阻塞的)
-
 - [ZooKeeper的实现机制，有缓存，如何存储注册服务的](#zookeeper的实现机制，有缓存，如何存储注册服务的)
 - [Spring的监听器](#spring的监听器)
 - [web.xml的配置](#webxml的配置)
@@ -28,6 +32,37 @@
 - [Nginx的请求转发算法，如何配置根据权重转发](#nginx的请求转发算法，如何配置根据权重转发)
 - [分布式锁](#分布式锁)
 - [JUnit4中的 before beforeClass after afterClass](#junit4中的-before-beforeclass-after-afterclass)
+
+### Java有哪些锁？乐观锁 悲观锁 synchronized 可重入锁 读写锁,用过reentrantlock吗？reentrantlock与synmchronized的区别
+
+Java锁
+- 大部分情况是否有另外的线程在同步资源：乐观锁 悲观锁
+- 多个线程竞争锁是否排队：公平锁 非公平锁
+- 一个线程多个锁方法获取同一把锁：可重入锁 非可重入锁
+- 多个线程能否共享锁：独占锁 共享锁
+
+synchronized ReentrantLock 区别
+1. 底层实现不同：synchronized是jvm使用系统的mutex lock来实现的 ReentrantLock是Java API层面使用CAS来实现加锁
+2. 功能不同：ReentrantLock提供 等待可中断、公平锁、绑定多个条件等功能
+
+- [不可不说的Java“锁”事](https://tech.meituan.com/2018/11/15/java-lock.html) 
+- [Synchronize和ReentrantLock区别](https://blog.csdn.net/qq838642798/article/details/65441415)
+
+### 线程如何退出结束
+
+- [Java结束线程的三种方法](https://blog.csdn.net/xu__cg/article/details/52831127)
+
+### 定时器用什么做的
+
+Java Timer 使用TaskQueue（简易堆） TimerThread（单一线程）来实现的，更多查看以下内容
+
+- [定时器的几种实现方式](https://juejin.im/post/5c4d3d1af265da6151151846)
+
+### 时间的格式化方法
+```java
+SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+String str = simpleDateFormat.format(new Date()); //2019-10-14 14:52:19
+```
 
 ### 字符串的格式化方法
 ```java
@@ -79,11 +114,58 @@ IO会阻塞，readLine是阻塞的
 
 ### AOP的底层实现，动态代理是如何动态，假如有100个对象，如何动态的为这100个对象代理
 
+AOP的底层使用动态代理来实现。
+
+动态代理使用：
+- Proxy->newProxyInstance(infs, handler) 用于生成代理对象
+- InvocationHandler：这个接口主要用于自定义代理逻辑处理
+- 为了完成对被代理对象的方法拦截，我们需要在InvocationHandler对象中传入被代理对象实例。
+
+**参考**
+- [10分钟看懂动态代理设计模式](https://juejin.im/post/5a99048a6fb9a028d5668e62)
+- [Spring AOP底层实现- JDK动态代理和CGLIB动态代理](https://www.jianshu.com/p/b3d18892bb81)
+- [Java动态代理 深度详解](https://www.imooc.com/article/21339)
+- [Java三种代理模式：静态代理、动态代理和cglib代理](https://segmentfault.com/a/1190000011291179)
+
 ### 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化
 
 不会发生变化
 
 ### Java内存模型，垃圾回收机制，不可达算法
+
+#### JVM内存机构
+
+堆 方法区 程序计数器 栈 本地方法区
+
+- [JVM内存结构](https://www.cnblogs.com/ityouknow/p/5610232.html)
+
+#### Java内存模型
+
+Java 内存模型，Java Memory Model
+
+JMM就是一组规则，这组规则意在解决在并发编程可能出现的线程安全问题，并提供了内置解决方案（happen-before原则）及其外部可使用的同步手段(synchronized/volatile等)，确保了程序执行在多线程环境中的应有的原子性，可视性及其有序性。
+
+JMM是一种规范，目的是解决由于多线程通过共享内存进行通信时，存在的本地内存数据不一致、编译器会对代码指令重排序、处理器会对代码乱序执行等带来的问题。
+
+- **[全面理解Java内存模型(JMM)及volatile关键字](https://blog.csdn.net/javazejian/article/details/72772461)**
+- [再有人问你Java内存模型是什么，就把这篇文章发给他。](https://www.hollischuang.com/archives/2550)
+- [《成神之路-基础篇》JVM——Java内存模型(已完结)](https://www.hollischuang.com/archives/1003)  
+
+#### 对象不可达
+
+对象不可达算法：引用计数法、根搜索算法
+
+引用计数法就是如果一个对象没有被任何引用指向，则可视之为垃圾。这种方法的缺点就是不能检测到环的存在。
+
+根搜索算法的基本思路就是通过一系列名为”GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链(Reference Chain)，当一个对象到GC Roots没有任何引用链相连时，则证明此对象是不可用的。
+
+- [【JVM底层策略 一】GC roots如何判断对象不可达](https://blog.csdn.net/sinat_33087001/article/details/77987463)
+- [可达性算法、Java引用 详解](https://www.jianshu.com/p/8f5fa8288d9b)
+
+#### 垃圾回收
+
+- [图解Java 垃圾回收机制](https://blog.csdn.net/justloveyou_/article/details/71216049)
+
 
 ### 一万个人抢100个红包，如何实现（不用队列），如何保证2个人不能抢到同一个红包，可用分布式锁
 

@@ -1,0 +1,18 @@
+synchronized
+https://segmentfault.com/a/1190000017255044 (五)Synchronized原理分析
+https://segmentfault.com/a/1190000017255226 (六) synchronized的源码分析
+https://www.jianshu.com/p/c5058b6fe8e5 JVM源码分析之synchronized实现
+https://blog.csdn.net/javazejian/article/details/72828483 深入理解Java并发之synchronized实现原理
+
+ReentrantLock
+https://www.cnblogs.com/xrq730/p/4979021.html ReentrantLock实现原理深入探究
+https://www.jianshu.com/p/d1cee89c1dda 线程安全之 ReentrantLock 完全解析
+https://www.jianshu.com/p/fe027772e156 分析ReentrantLock的实现原理
+
+synchronized ReentrantLock 区别
+https://juejin.im/post/5bc87409f265da0ad701da35 Synchronize和ReentrantLock区别
+https://www.jianshu.com/p/650498242d67 Synchronized和ReentrantLock的区别
+https://blog.csdn.net/qq838642798/article/details/65441415 ReenTrantLock可重入锁（和synchronized的区别）总结
+
+https://tech.meituan.com/2018/11/15/java-lock.html 不可不说的Java“锁”事
+https://www.cnblogs.com/yangfeiORfeiyang/p/9694383.html ConcurrentHashMap 1.8为什么要使用CAS+Synchronized取代Segment+ReentrantLock ***
