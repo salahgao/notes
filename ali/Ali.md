@@ -8,6 +8,11 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [memcache和redis的区别](#memcache和redis的区别)
+- [JVM的一些命令](#jvm的一些命令)
+- [遍历hashmap的三种方式](#遍历hashmap的三种方式)
+- [为什么线程执行要调用start而不是直接run](#为什么线程执行要调用start而不是直接run)
+- [ThreadLocal的使用场景](#ThreadLocal的使用场景)
 - [Java有哪些锁？乐观锁 悲观锁 synchronized 可重入锁 读写锁,用过reentrantlock吗？reentrantlock与synmchronized的区别](#java有哪些锁？乐观锁-悲观锁-synchronized-可重入锁-读写锁用过reentrantlock吗？reentrantlock与synmchronized的区别)
 - [线程如何退出结束](#线程如何退出结束)
 - [定时器用什么做的](#定时器用什么做的)
@@ -20,7 +25,7 @@
 - [web.xml的配置](#webxml的配置)
 - [spring的bean配置的几种方式](#spring的bean配置的几种方式)
 - [Tomcat的各种配置，如何配置docBase](#tomcat的各种配置，如何配置docBase)
-- [是否用过maven install。 maven test。git（make install是安装本地jar包）](#是否用过maven-install。-maven-test。git（make-install是安装本地jar包）)
+- [是否用过maven install。 maven test。](#是否用过maven-install。-maven-test。)
 - [AOP的底层实现，动态代理是如何动态，假如有100个对象，如何动态的为这100个对象代理](#aop的底层实现，动态代理是如何动态，假如有100个对象，如何动态的为这100个对象代理)
 - [两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化](#两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化)
 - [Java内存模型，垃圾回收机制，不可达算法](#java内存模型，垃圾回收机制，不可达算法)
@@ -32,6 +37,53 @@
 - [Nginx的请求转发算法，如何配置根据权重转发](#nginx的请求转发算法，如何配置根据权重转发)
 - [分布式锁](#分布式锁)
 - [JUnit4中的 before beforeClass after afterClass](#junit4中的-before-beforeclass-after-afterclass)
+
+### memcache和redis的区别
+
+主要从以下几方面来看：
+- Redis支持服务器端的数据操作
+- 内存使用效率
+- 性能
+- 数据类型支持
+- 网络IO模型
+- 内存管理机制
+
+    在Redis中，并不是所有的数据都一直存储在内存中的。这是和Memcached相比一个最大的区别。
+
+- 数据持久化支持
+
+    Redis虽然是基于内存的存储系统，但是它本身是支持内存数据的持久化的，而且提供两种主要的持久化策略：RDB快照和AOF日志。而memcached是不支持数据持久化操作的。
+
+- 集群
+- 数据一致性 事务
+
+
+- [Redis和Memcached的区别](https://www.biaodianfu.com/redis-vs-memcached.html)
+- [分布式缓存Redis之与Memcached的比较](https://blog.csdn.net/u011489043/article/details/78922390)
+- [Redis与Memcached的区别](https://blog.51cto.com/gnucto/998509)
+
+
+
+### JVM的一些命令
+
+- [jvm系列(四):jvm调优-命令大全（jps jstat jmap jhat jstack jinfo）](https://www.cnblogs.com/ityouknow/p/5714703.html)
+
+### 遍历hashmap的三种方式
+
+- [HashMap循环遍历方式及其性能对比](https://www.trinea.cn/android/hashmap-loop-performance/)
+
+### 为什么线程执行要调用start而不是直接run
+
+- [多线程为什么调用start而不是调用run方法](https://blog.csdn.net/qq_30264833/article/details/57406456)
+- [为什么线程执行要调用start而不是直接run](https://www.cnblogs.com/GrimMjxCl/p/9398840.html)
+
+### ThreadLocal的使用场景
+
+This class provides thread-local variables. These variables differ from their normal counterparts in that each thread that accesses one (via its get or set method) has its own, independently initialized copy of the variable. 
+
+此类提供线程局部变量。这些变量与普通变量不同，每个访问（通过其get或set方法）的线程 都有其自己的，独立初始化的变量副本。 
+
+ThreadLocal 并不是解决并发情况下共享变量的线程安全问题。而是同一个系统中，单次执行链条上下游安全传值用的。
 
 ### Java有哪些锁？乐观锁 悲观锁 synchronized 可重入锁 读写锁,用过reentrantlock吗？reentrantlock与synmchronized的区别
 
@@ -100,17 +152,17 @@ IO会阻塞，readLine是阻塞的
 - 基于Java类配置
 
 **参考**
-- https://blog.csdn.net/qq_19635589/article/details/72898618
+- [关于spring中bean的三种配置方式的比较](https://blog.csdn.net/qq_19635589/article/details/72898618)
 
 ### Tomcat的各种配置，如何配置docBase
 
-### 是否用过maven install。 maven test。git（make install是安装本地jar包）
+### 是否用过maven install。 maven test。
 
 - test: test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
 - install: install the package into the local repository, for use as a dependency in other projects locally
 
 **参考**
-- https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+- [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
 
 ### AOP的底层实现，动态代理是如何动态，假如有100个对象，如何动态的为这100个对象代理
 
@@ -133,7 +185,7 @@ AOP的底层使用动态代理来实现。
 
 ### Java内存模型，垃圾回收机制，不可达算法
 
-#### JVM内存机构
+#### JVM内存结构
 
 堆 方法区 程序计数器 栈 本地方法区
 
@@ -184,8 +236,8 @@ JMM是一种规范，目的是解决由于多线程通过共享内存进行通�
 - wait方法是针对一个被同步代码块加锁的对象，而sleep是针对一个线程。更详细的讲解可以参考《Java核心技术卷1》，里面介绍了如何使用wait和notify方法。
 
 **参考**
-- https://www.jianshu.com/p/25e959037eed
-- https://blog.csdn.net/boling_cavalry/article/details/77793224
+- [[译]Java中Wait、Sleep和Yield方法的区别](https://www.jianshu.com/p/25e959037eed)
+- [Java的wait()、notify()学习三部曲之一：JVM源码分析](https://blog.csdn.net/boling_cavalry/article/details/77793224)
 
 ### 线程的状态，线程的阻塞的方式
 
@@ -209,8 +261,8 @@ Java中线程的状态分为6种。
 5. suspend() 和 resume() 方法：两个方法配套使用，suspend()使得线程进入阻塞状态，并且不会自动恢复，必须其对应的resume() 被调用，才能使得线程重新进入可执行状态。典型地，suspend() 和 resume() 被用在等待另一个线程产生的结果的情形：测试发现结果还没有产生后，让线程阻塞，另一个线程产生了结果后，调用 resume() 使其恢复。Thread中suspend()和resume()两个方法在JDK1.5中已经废除，不再介绍。因为有死锁倾向。
 
 **参考**
-- https://blog.csdn.net/pange1991/article/details/53860651
-- https://blog.csdn.net/weixin_41101173/article/details/79679300
+- [Java线程的6种状态及切换(透彻讲解)](https://blog.csdn.net/pange1991/article/details/53860651)
+- [Java中什么方法导致线程阻塞](https://blog.csdn.net/weixin_41101173/article/details/79679300)
 
 ### 用hashmap实现redis有什么问题
 - 容量问题：容量空间受JVM堆栈大小限制
@@ -241,8 +293,8 @@ upstream myapp1 {
 使用此配置，每5个新请求将按以下方式分布在应用程序实例中：3个请求将定向到srv1，一个请求将定向到srv2，另一个将定向到srv3。
 
 **参考**
-- http://nginx.org/en/docs/http/load_balancing.html
-- https://www.nginx.com/products/nginx/load-balancing/
+- [Using nginx as HTTP load balancer](http://nginx.org/en/docs/http/load_balancing.html)
+- [High-Performance Load Balancing](https://www.nginx.com/products/nginx/load-balancing/)
 
 
 ### 分布式锁
@@ -282,6 +334,5 @@ upstream myapp1 {
 
 **参考**
 
-- https://blog.csdn.net/lyalei/article/details/79133710
-
-- https://junit.org/junit4/javadoc/latest/index.html
+- [junit用法，before,beforeClass,after, afterClass的执行顺序](https://blog.csdn.net/lyalei/article/details/79133710)
+- [JUnit 4.13-rc-1 API](https://junit.org/junit4/javadoc/latest/index.html)
