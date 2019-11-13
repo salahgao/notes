@@ -8,6 +8,7 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [MySQL的行级锁加在哪个位置](#mysql的行级锁加在哪个位置)
 - [memcache和redis的区别](#memcache和redis的区别)
 - [JVM的一些命令](#jvm的一些命令)
 - [遍历hashmap的三种方式](#遍历hashmap的三种方式)
@@ -37,6 +38,13 @@
 - [Nginx的请求转发算法，如何配置根据权重转发](#nginx的请求转发算法，如何配置根据权重转发)
 - [分布式锁](#分布式锁)
 - [JUnit4中的 before beforeClass after afterClass](#junit4中的-before-beforeclass-after-afterclass)
+
+### MySQL的行级锁加在哪个位置
+
+InnoDB行锁是通过给索引上的索引项加锁来实现的。所以，只有通过索引条件检索数据，InnoDB才使用行级锁，否则，InnoDB将使用表锁。
+
+- [五分钟了解Mysql的行级锁——《深究Mysql锁》](https://blog.csdn.net/zcl_love_wx/article/details/81983267)
+
 
 ### memcache和redis的区别
 
