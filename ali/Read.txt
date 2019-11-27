@@ -3,7 +3,7 @@ https://juejin.im/post/5a5efb1b518825732b19dca4 ThreadLocal源码深度剖析
 https://mp.weixin.qq.com/s/TaVEhJJlAX3PJRd90AEj0A 使用ThreadLocal不当可能会导致内存泄露
 https://juejin.im/post/5ac2eb52518825555e5e06ee ThreadLocal就是这么简单
 
-synchronized
+Synchronized
 https://segmentfault.com/a/1190000017255044 (五)Synchronized原理分析
 https://segmentfault.com/a/1190000017255226 (六) synchronized的源码分析
 https://www.jianshu.com/p/c5058b6fe8e5 JVM源码分析之synchronized实现
@@ -14,7 +14,7 @@ https://www.cnblogs.com/xrq730/p/4979021.html ReentrantLock实现原理深入探
 https://www.jianshu.com/p/d1cee89c1dda 线程安全之 ReentrantLock 完全解析
 https://www.jianshu.com/p/fe027772e156 分析ReentrantLock的实现原理
 
-synchronized ReentrantLock 区别
+Synchronized ReentrantLock 区别
 https://juejin.im/post/5bc87409f265da0ad701da35 Synchronize和ReentrantLock区别
 https://www.jianshu.com/p/650498242d67 Synchronized和ReentrantLock的区别
 https://blog.csdn.net/qq838642798/article/details/65441415 ReenTrantLock可重入锁（和synchronized的区别）总结

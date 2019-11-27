@@ -8,6 +8,7 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [ConcurrentHashMap的锁是如何加的？是不是分段越多越好](#concurrenthashmap的锁是如何加的？是不是分段越多越好)
 - [MySQL的行级锁加在哪个位置](#mysql的行级锁加在哪个位置)
 - [memcache和redis的区别](#memcache和redis的区别)
 - [JVM的一些命令](#jvm的一些命令)
@@ -38,6 +39,24 @@
 - [Nginx的请求转发算法，如何配置根据权重转发](#nginx的请求转发算法，如何配置根据权重转发)
 - [分布式锁](#分布式锁)
 - [JUnit4中的 before beforeClass after afterClass](#junit4中的-before-beforeclass-after-afterclass)
+
+### ConcurrentHashMap的锁是如何加的？是不是分段越多越好
+
+Java 7 采用分段来加锁，底层采用分段+数组+链表实现。不是分段越多越好。Concurrency Level根据业务的并发更新线程数来设置。
+
+Java 8 采用CAS+Synchronized来保证并发，底层采用数组+链表+红黑树实现。
+
+- https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ConcurrentHashMap.html
+  
+  Using a significantly higher value than you need can waste space and time, and a significantly lower value can lead to thread contention.
+
+- https://www.burnison.ca/articles/the-concurrency-of-concurrenthashmap ***
+  when under-estimating, the data structure will be under extra contention, causing threads to block when attempting to write to a currently-locked Segment. If, instead, the concurrency level over-estimated, you encounter excessive bloat due to an unnecessary number of segments; such bloat may lead to degraded performance due to high numbers of cache misses.
+
+  high numbers of cache misses： scanAndLockForPut()  has two primary advantages:
+  - It increases the likelihood that all members of the linked list will be retained in a CPU cache (probably L1 or L2), preventing the need to do a subsequent, more costly read from L3 or memory once the lock has been acquired. This is effectively an obtuse pre-fetch.
+  - It decreases the amount of time (however small) required to create a new HashEntry while holding a lock on the segment.
+
 
 ### MySQL的行级锁加在哪个位置
 

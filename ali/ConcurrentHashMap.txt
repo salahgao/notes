@@ -1,0 +1,29 @@
+ConcurrentHashMap
+
+https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ConcurrentHashMap.html
+Using a significantly higher value than you need can waste space and time, and a significantly lower value can lead to thread contention.
+
+https://www.burnison.ca/articles/the-concurrency-of-concurrenthashmap ***
+when under-estimating, the data structure will be under extra contention, causing threads to block when attempting to write to a currently-locked Segment. If, instead, the concurrency level over-estimated, you encounter excessive bloat due to an unnecessary number of segments; such bloat may lead to degraded performance due to high numbers of cache misses.
+high numbers of cache misses： scanAndLockForPut()  has two primary advantages:
+- It increases the likelihood that all members of the linked list will be retained in a CPU cache (probably L1 or L2), preventing the need to do a subsequent, more costly read from L3 or memory once the lock has been acquired. This is effectively an obtuse pre-fetch.
+- It decreases the amount of time (however small) required to create a new HashEntry while holding a lock on the segment.
+
+
+https://www.ibm.com/developerworks/cn/java/java-lo-concurrenthashmap/index.html 探索 ConcurrentHashMap 高并发性的实现机制
+https://www.javarticles.com/2012/06/concurrenthashmap.html
+
+https://www.jianshu.com/p/d767f04102b7 ConcurrentHashMap 1.7
+https://blog.csdn.net/crazy1235/article/details/76795383 JDK 1.7之 ConcurrentHashMap 源码分析
+
+https://www.jianshu.com/p/c0642afe03e0 深入浅出ConcurrentHashMap1.8 ***
+https://blog.csdn.net/wengcheng_k/article/details/78868759 ConcurrentHashMap从1.7-1.8变化
+
+https://www.cnblogs.com/GrimMjxCl/p/9439738.html ConcurrentHashmap的锁是如何加的？是不是分段越多越好
+
+http://javabypatel.blogspot.com/2016/09/concurrenthashmap-interview-questions.html
+https://medium.com/@itsromiljain/curious-case-of-concurrenthashmap-90249632d335
+https://stackoverflow.com/questions/1779058/is-it-possible-to-have-more-than-32-locks-in-concurrenthashmap
+https://stackoverflow.com/questions/18488163/how-to-use-and-set-appropriately-concurrency-level-for-concurrenthashmap
+https://tech.ebayinc.com/engineering/high-throughput-thread-safe-lru-caching/
+https://www.javarticles.com/2012/06/hashmap.html
