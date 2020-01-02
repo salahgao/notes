@@ -8,6 +8,11 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [统计一个整数的二进制表示中bit为1的个数](#统计一个整数的二进制表示中bit为1的个数)
+- [如何查看网络进程](#如何查看网络进程)
+- [Linux系统日志在哪里看](#linux系统日志在哪里看)
+- [MySQL其他的性能优化方式](#mysql其他的性能优化方式)
+- [MyISAM与InnoDB的区别](#myisam与innodb的区别)
 - [ConcurrentHashMap的锁是如何加的？是不是分段越多越好](#concurrenthashmap的锁是如何加的？是不是分段越多越好)
 - [MySQL的行级锁加在哪个位置](#mysql的行级锁加在哪个位置)
 - [memcache和redis的区别](#memcache和redis的区别)
@@ -39,6 +44,54 @@
 - [Nginx的请求转发算法，如何配置根据权重转发](#nginx的请求转发算法，如何配置根据权重转发)
 - [分布式锁](#分布式锁)
 - [JUnit4中的 before beforeClass after afterClass](#junit4中的-before-beforeclass-after-afterclass)
+
+### 统计一个整数的二进制表示中bit为1的个数
+
+```java
+public class BitCount {
+    public static void main(String[] args) {
+        int randInt = new Random().nextInt();
+        int count = 0;
+        for (int i = 0; i < 32; i++) {
+            // 注意 ((randInt >>> i) & 1) 需要括号都抱起来
+            count = count + ((randInt >>> i) & 1);
+        }
+        System.out.println(count);
+    }
+}
+
+```
+- [java源码Integer.bitCount算法解析，分析原理（统计二进制bit位）](https://segmentfault.com/a/1190000015763941)
+
+### 如何查看网络进程
+
+netstat -anltp|grep LIST
+
+-a, --all
+Show both listening and non-listening (for TCP this means established connections) sockets. With the --interfaces option, show interfaces that are not marked
+
+--numeric , -n
+Show numerical addresses instead of trying to determine symbolic host, port or user names.
+
+-l, --listening
+Show only listening sockets. (These are omitted by default.)
+
+-p, --program
+Show the PID and name of the program to which each socket belongs.
+
+### Linux系统日志在哪里看
+
+/var/log/*
+
+### MySQL其他的性能优化方式
+
+- [MySQL 性能优化技巧](https://juejin.im/post/59d83f1651882545eb54fc7e)
+- [MYSQL性能优化的最佳20+条经验](https://coolshell.cn/articles/1846.html)
+
+### MyISAM与InnoDB的区别
+
+- [MySQL存储引擎－－MyISAM与InnoDB区别](https://blog.csdn.net/xifeijian/article/details/20316775)
+- [MySQL存储引擎MyISAM与InnoDB区别总结整理](https://blog.csdn.net/xlgen157387/article/details/68978320)
 
 ### ConcurrentHashMap的锁是如何加的？是不是分段越多越好
 
