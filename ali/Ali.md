@@ -1,6 +1,6 @@
 # 问答
 
-## TODO
+## 问题
 - 操作系统 用户态 内核态
 - 多态
 - 设计模式
@@ -8,6 +8,12 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [如何解决并发问题](#如何解决并发问题)
+- [MongoDB和HBase的区别](#mongodb和hbase的区别)
+- [git rebase](#git-rebase)
+- [HashMap如果只有一个写其他全读会出什么问题](#hashmap如果只有一个写其他全读会出什么问题)
+- [如何手动触发全量回收垃圾，如何立即触发垃圾回收](#如何手动触发全量回收垃圾，如何立即触发垃圾回收)
+- [如何把java内存的数据全部dump出来](#如何把java内存的数据全部dump出来)
 - [统计一个整数的二进制表示中bit为1的个数](#统计一个整数的二进制表示中bit为1的个数)
 - [如何查看网络进程](#如何查看网络进程)
 - [Linux系统日志在哪里看](#linux系统日志在哪里看)
@@ -44,6 +50,38 @@
 - [Nginx的请求转发算法，如何配置根据权重转发](#nginx的请求转发算法，如何配置根据权重转发)
 - [分布式锁](#分布式锁)
 - [JUnit4中的 before beforeClass after afterClass](#junit4中的-before-beforeclass-after-afterclass)
+
+### 如何解决并发问题
+
+主要两种思路：
+- 使用队列排队，将并发变为串行
+- 使用锁，等待执行
+
+
+### MongoDB和HBase的区别
+
+MongoDB是高性能、无模式的文档型数据库，支持二级索引，非常适合文档化格式的存储及查询。MongoDB的官方定位是通用数据库，确实和MySQL有些像，现在也很流行，但它还是有事务、join等短板，在事务、复杂查询应用下无法取代关系型数据库。
+
+HBase存储容量大，一个表可以容纳上亿行、上百万列，可应对超大数据量要求扩展简单的需求。Hadoop的无缝集成，让HBase的数据可靠性和海量数据分析性能（MapReduce）值得期待。
+
+- [mongodb,redis,hbase 定位与区别](https://blog.csdn.net/aikumei/article/details/77671891)
+- [Mongodb与Hbase的区别](https://blog.csdn.net/mianshui1105/article/details/53909430)
+
+### git rebase
+
+- [git rebase简介(基本篇)](https://www.jianshu.com/p/c92f552da60c)
+
+### HashMap如果只有一个写其他全读会出什么问题
+
+不会有什么问题。
+
+### 如何手动触发全量回收垃圾，如何立即触发垃圾回收
+
+可以使用代码触发垃圾回收，但不能准确控制垃圾回收时间点。使用System.gc()、Runtime.getRuntime().gc()触发垃圾回收。
+
+### 如何把java内存的数据全部dump出来
+
+jmap -dump:live,format=b,file=heap.bin <pid>
 
 ### 统计一个整数的二进制表示中bit为1的个数
 
