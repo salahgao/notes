@@ -8,6 +8,11 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [MySQL是如何实现事务的](#mysql是如何实现事务的)
+- [代理模式](#代理模式)
+- [mysql的binlog](#mysql的binlog)
+- [java线程池](#java线程池)
+- [volatile的用途](#volatile的用途)
 - [如何解决并发问题](#如何解决并发问题)
 - [MongoDB和HBase的区别](#mongodb和hbase的区别)
 - [git rebase](#git-rebase)
@@ -50,6 +55,32 @@
 - [Nginx的请求转发算法，如何配置根据权重转发](#nginx的请求转发算法，如何配置根据权重转发)
 - [分布式锁](#分布式锁)
 - [JUnit4中的 before beforeClass after afterClass](#junit4中的-before-beforeclass-after-afterclass)
+
+### 单例模式的七种写法
+
+- [设计模式（二）单例模式的七种写法](https://blog.csdn.net/itachi85/article/details/50510124)
+
+### MySQL是如何实现事务的
+
+- [MySQL事务实现原理](https://juejin.im/post/5cb2e3b46fb9a0686e40c5cb)
+- [脏读、幻读与不可重复读](https://juejin.im/entry/5b835dfbf265da43531d0593)
+
+### 代理模式
+
+- [代理模式](https://www.runoob.com/design-pattern/proxy-pattern.html)
+
+### MySQL的binlog
+
+- [MySQL的binlog日志](https://www.cnblogs.com/martinzhang/p/3454358.html)
+
+
+### java线程池
+
+- [深入理解Java线程池：ThreadPoolExecutor](http://www.ideabuffer.cn/2017/04/04/深入理解Java线程池：ThreadPoolExecutor/)
+
+### volatile的用途
+
+- [volatile关键字及其作用](https://blog.csdn.net/u010255818/article/details/65633033)
 
 ### 如何解决并发问题
 
