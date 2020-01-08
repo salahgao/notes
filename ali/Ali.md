@@ -8,6 +8,8 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [MySQL的默认隔离级别，其他隔离级别](#mysql的默认隔离级别，其他隔离级别)
+- [读写分离何时强制要读主库，读哪个从库是通过什么方式决定的，从库的同步mysql用的什么方式](#读写分离何时强制要读主库，读哪个从库是通过什么方式决定的，从库的同步mysql用的什么方式)
 - [MySQL是如何实现事务的](#mysql是如何实现事务的)
 - [代理模式](#代理模式)
 - [mysql的binlog](#mysql的binlog)
@@ -55,6 +57,14 @@
 - [Nginx的请求转发算法，如何配置根据权重转发](#nginx的请求转发算法，如何配置根据权重转发)
 - [分布式锁](#分布式锁)
 - [JUnit4中的 before beforeClass after afterClass](#junit4中的-before-beforeclass-after-afterclass)
+
+### MySQL的默认隔离级别，其他隔离级别
+
+- [Innodb中的事务隔离级别和锁的关系](https://tech.meituan.com/2014/08/20/innodb-lock.html)
+
+### 读写分离何时强制要读主库，读哪个从库是通过什么方式决定的，从库的同步mysql用的什么方式
+
+- [如何实现 MySQL 的读写分离？如何解决 MySQL 主从同步的延时问题？](https://zhuanlan.zhihu.com/p/60455737)
 
 ### 单例模式的七种写法
 
