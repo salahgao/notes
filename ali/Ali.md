@@ -8,6 +8,7 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [链表反转](#链表反转)
 - [MySQL的默认隔离级别，其他隔离级别](#mysql的默认隔离级别，其他隔离级别)
 - [读写分离何时强制要读主库，读哪个从库是通过什么方式决定的，从库的同步mysql用的什么方式](#读写分离何时强制要读主库，读哪个从库是通过什么方式决定的，从库的同步mysql用的什么方式)
 - [MySQL是如何实现事务的](#mysql是如何实现事务的)
@@ -57,6 +58,35 @@
 - [Nginx的请求转发算法，如何配置根据权重转发](#nginx的请求转发算法，如何配置根据权重转发)
 - [分布式锁](#分布式锁)
 - [JUnit4中的 before beforeClass after afterClass](#junit4中的-before-beforeclass-after-afterclass)
+
+### 链表反转
+
+```
+//核心思路，交换当前节点的prev与next
+
+//循环
+public static void reverse(Node curr) {
+    while (curr != null) {
+        Node next = curr.next;
+        curr.next = curr.prev;
+        curr.prev = next;
+        curr = next;
+    }
+    return;
+}
+
+//递归
+public static void reverse(Node curr) {
+    Node next = curr.next;
+    curr.next = curr.prev;
+    curr.prev = next;
+    if (next != null) {
+        reverseNode(next);
+    }
+    return;
+}
+
+```
 
 ### MySQL的默认隔离级别，其他隔离级别
 
