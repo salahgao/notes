@@ -61,7 +61,7 @@
 
 ### 链表反转
 
-```
+```java
 //核心思路，交换当前节点的prev与next
 
 //循环
@@ -81,7 +81,7 @@ public static void reverse(Node curr) {
     curr.next = curr.prev;
     curr.prev = next;
     if (next != null) {
-        reverseNode(next);
+        reverse(next);
     }
     return;
 }
