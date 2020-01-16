@@ -8,6 +8,8 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [是否用过Autowire注解](#是否用过Autowire注解)
+- [何时会内存泄漏，内存泄漏会抛哪些异常](#何时会内存泄漏，内存泄漏会抛哪些异常)
 - [链表反转](#链表反转)
 - [MySQL的默认隔离级别，其他隔离级别](#mysql的默认隔离级别，其他隔离级别)
 - [读写分离何时强制要读主库，读哪个从库是通过什么方式决定的，从库的同步mysql用的什么方式](#读写分离何时强制要读主库，读哪个从库是通过什么方式决定的，从库的同步mysql用的什么方式)
@@ -58,6 +60,19 @@
 - [Nginx的请求转发算法，如何配置根据权重转发](#nginx的请求转发算法，如何配置根据权重转发)
 - [分布式锁](#分布式锁)
 - [JUnit4中的 before beforeClass after afterClass](#junit4中的-before-beforeclass-after-afterclass)
+
+## 内容
+
+### 是否用过Autowire注解
+
+- https://www.baeldung.com/spring-autowire
+
+
+### 何时会内存泄漏，内存泄漏会抛哪些异常
+
+参考《深入理解Java虚拟机》，依照不同的区域，说明不同的内存泄露异常。
+
+[Java内存溢出(OOM)异常完全指南](https://www.jianshu.com/p/2fdee831ed03)
 
 ### 链表反转
 
