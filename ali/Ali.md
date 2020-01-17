@@ -8,6 +8,7 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [Spring的注入bean的方式](#spring的注入bean的方式)
 - [是否用过Autowire注解](#是否用过Autowire注解)
 - [何时会内存泄漏，内存泄漏会抛哪些异常](#何时会内存泄漏，内存泄漏会抛哪些异常)
 - [链表反转](#链表反转)
@@ -62,6 +63,10 @@
 - [JUnit4中的 before beforeClass after afterClass](#junit4中的-before-beforeclass-after-afterclass)
 
 ## 内容
+
+### Spring的注入bean的方式
+
+- https://juejin.im/post/5ca81a536fb9a05e6538aa39
 
 ### 是否用过Autowire注解
 
