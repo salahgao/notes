@@ -8,6 +8,8 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [统计100G的ip文件中出现ip次数最多的100个ip](#统计100g的ip文件中出现ip次数最多的100个ip)
+- [Top K 问题](#top-k-问题)
 - [Spring的注入bean的方式](#spring的注入bean的方式)
 - [是否用过Autowire注解](#是否用过Autowire注解)
 - [何时会内存泄漏，内存泄漏会抛哪些异常](#何时会内存泄漏，内存泄漏会抛哪些异常)
@@ -64,6 +66,38 @@
 
 ## 内容
 
+### 统计100G的ip文件中出现ip次数最多的100个ip
+
+基本思路：
+- 使用hash(ip)取模，大文件分割为小文件
+- 对每个小文件计算ip次数，求top k
+- 合并每个小文件的top k，获得最终的topk
+
+参考
+- [海量数据面试题目](https://www.jianshu.com/p/8a8f84b97671)
+- [海量日志中统计次数最多的100个IP](https://segmentfault.com/a/1190000012414310)
+
+### Top K 问题
+
+不考虑数据量，单纯的Top K可以使用以下算法解决
+- 全局排序，O(n*lg(n))
+- 局部排序，只排序TopK个数，O(n*k)
+- 堆，TopK个数也不排序了，O(n*lg(k))
+- 分治法，每个分支“都要”递归，例如：快速排序，O(n*lg(n))
+- 减治法，“只要”递归一个分支，例如：二分查找O(lg(n))，随机选择O(n)
+- TopK的另一个解法：随机选择+partition
+
+思考
+- 随机选择平均时间复杂度为lg(2n)
+- 另外一种解法，优化随机选择+partition：
+    - 使用冒泡法，获得最大、最小值，选择value=max- m*((max-min)/k) m为某一常数，做partition
+    - 随机获取n/m或者100*k个数，排序获取第k的数，然后以此数作为值，做partition
+
+
+参考
+- [拜托，面试别再问我TopK了！！！](https://mp.weixin.qq.com/s/FFsvWXiaZK96PtUg-mmtEw)
+- [算法必学：经典的 Top K 问题](https://juejin.im/entry/5c565fb7f265da2d84105958)
+
 ### Spring的注入bean的方式
 
 - https://juejin.im/post/5ca81a536fb9a05e6538aa39
@@ -75,9 +109,7 @@
 
 ### 何时会内存泄漏，内存泄漏会抛哪些异常
 
-参考《深入理解Java虚拟机》，依照不同的区域，说明不同的内存泄露异常。
-
-[Java内存溢出(OOM)异常完全指南](https://www.jianshu.com/p/2fdee831ed03)
+[Java OutOfMemoryError](../oom/OOM.md)
 
 ### 链表反转
 
