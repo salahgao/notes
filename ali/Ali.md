@@ -8,6 +8,7 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [四则运算](#四则运算)
 - [统计100G的ip文件中出现ip次数最多的100个ip](#统计100g的ip文件中出现ip次数最多的100个ip)
 - [Top K 问题](#top-k-问题)
 - [Spring的注入bean的方式](#spring的注入bean的方式)
@@ -65,6 +66,23 @@
 - [JUnit4中的 before beforeClass after afterClass](#junit4中的-before-beforeclass-after-afterclass)
 
 ## 内容
+
+### MyBatis如何映射表结构
+### 门面模式，类图
+### static 锁
+### 读写锁
+### 适配器 代理模式
+### 选举算法
+
+### 四则运算
+
+思路：中缀表达式，运算处理方法使用栈处理  [com.salah.ali.Arithmetic2](https://github.com/salahgao/coding/blob/master/ali/src/main/java/com/salah/ali/Arithmetic2.java) 
+- 遇到括弧递归调用运算处理方法
+- 遇到* / 将栈顶是* /的计算入栈，并将新符号入栈
+- 遇到+ -将栈顶数据计算后后入栈，并将新符号入栈
+
+中缀表达式转后缀表达式
+- [Java 用栈处理四则运算](https://blog.csdn.net/kinglearnjava/article/details/48786829)
 
 ### 统计100G的ip文件中出现ip次数最多的100个ip
 
