@@ -8,6 +8,8 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [适配器 代理模式](#适配器-代理模式)
+- [选举算法](#选举算法)
 - [四则运算](#四则运算)
 - [统计100G的ip文件中出现ip次数最多的100个ip](#统计100g的ip文件中出现ip次数最多的100个ip)
 - [Top K 问题](#top-k-问题)
@@ -69,10 +71,25 @@
 
 ### MyBatis如何映射表结构
 ### 门面模式，类图
+
+- [设计模式（七）门面模式（Facade Pattern 外观模式）](https://blog.csdn.net/xingjiarong/article/details/50066133)
+
 ### static 锁
 ### 读写锁
 ### 适配器 代理模式
+
+- 适配器为了适配
+- 代理模式为了控制
+
+参考
+- [适配器模式，装饰模式，代理模式异同](https://www.jianshu.com/p/c156b5e23e30)
+- [适配器模式、装饰模式、代理模式的异同](https://juejin.im/post/5b19f1b8f265da6e626adfe1)
+- [代理模式vs适配器模式vs外观模式](https://www.cnblogs.com/qlee/archive/2011/05/24/2055728.html)
+
+
 ### 选举算法
+
+- [【分布式】Zookeeper的Leader选举](https://www.cnblogs.com/leesf456/p/6107600.html)
 
 ### 四则运算
 
