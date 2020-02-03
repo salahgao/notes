@@ -70,6 +70,39 @@
 ## 内容
 
 ### MyBatis如何映射表结构
+
+
+
+**自动映射**
+
+当自动映射查询结果时，MyBatis 会获取结果中返回的列名并在 Java 类中查找相同名字的属性（忽略大小写）。 这意味着如果发现了 ID 列和 id 属性，MyBatis 会将列 ID 的值赋给 id 属性。
+
+通常数据库列使用大写字母组成的单词命名，单词间用下划线分隔；而 Java 属性一般遵循驼峰命名法约定。为了在这两种命名方式之间启用自动映射，需要将 mapUnderscoreToCamelCase 设置为 true。
+
+**结果映射**
+
+```xml
+<select id="selectUsers" resultMap="userResultMap">
+  select
+    user_id             as "id",
+    user_name           as "userName",
+    hashed_password
+  from some_table
+  where id = #{id}
+</select>
+
+<resultMap id="userResultMap" type="User">
+  <result property="password" column="hashed_password"/>
+</resultMap>
+```
+
+甚至在提供了结果映射后，自动映射也能工作。在这种情况下，对于每一个结果映射，在 ResultSet 出现的列，如果没有设置手动映射，将被自动映射。在自动映射处理完毕后，再处理手动映射。 
+
+
+**参考**
+- [XML 映射文件](https://mybatis.org/mybatis-3/zh/sqlmap-xml.htm)
+
+
 ### 门面模式，类图
 
 - [设计模式（七）门面模式（Facade Pattern 外观模式）](https://blog.csdn.net/xingjiarong/article/details/50066133)
