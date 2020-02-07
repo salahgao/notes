@@ -8,6 +8,10 @@
 - 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化 不会发生变化 为什么？
 
 ## 目录
+- [MyBatis如何映射表结构](#mybatis如何映射表结构)
+- [门面模式，类图](#门面模式，类图)
+- [static 锁](#static-锁)
+- [读写锁](#读写锁)
 - [适配器 代理模式](#适配器-代理模式)
 - [选举算法](#选举算法)
 - [四则运算](#四则运算)
@@ -106,6 +110,9 @@
 - [设计模式（七）门面模式（Facade Pattern 外观模式）](https://blog.csdn.net/xingjiarong/article/details/50066133)
 
 ### static 锁
+
+- [java static锁和非static锁区别](https://blog.csdn.net/zbuger/article/details/50827762)
+
 ### 读写锁
 
 - [Java中的读/写锁](http://ifeve.com/read-write-locks/)
